@@ -513,9 +513,11 @@ class StrikeMd extends InlineMd {
 /// Italic text component
 class ItalicMd extends InlineMd {
   @override
-  RegExp get exp =>
-      RegExp(r"(?<!\*)\*(?<!\s)(.+?)(?<!\s)\*(?!\*)|\_(?<!\s)(.+?)(?<!\s)\_",
-          dotAll: true);
+  RegExp get exp => RegExp(
+      r"(?<!\*)\*(?!\s)([^*]+?)(?<!\s)\*(?!\*)|(?<![a-zA-Z0-9_])_(?!\s)([^_]+?)(?<!\s)_(?![a-zA-Z0-9_])");
+  // RegExp get exp =>
+  //     RegExp(r"(?<!\*)\*(?<!\s)(.+?)(?<!\s)\*(?!\*)|\_(?<!\s)(.+?)(?<!\s)\_",
+  //         dotAll: true);
 
   @override
   InlineSpan span(
